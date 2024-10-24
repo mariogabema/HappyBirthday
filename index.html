@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ucapan Selamat Ulang Tahun</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb); /* Gradasi lucu dengan kombinasi pink cerah, biru pastel, dan kuning lembut */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .page {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            background: rgba(176, 232, 80, 0.442); /* Latar belakang transparan dengan efek soft */
+            padding: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Efek bayangan lembut */
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #6b7aff; /* Pink cerah */
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            color: #0e22d9; /* Warna pink cerah untuk kesan lucu dan ceria */
+        }
+
+        .photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin: 20px;
+            border: 5px solid #ffd1dc; /* Warna pink pastel */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
+            animation: bounce 2s infinite;
+        }
+
+        .sticker {
+            width: 100px;
+            height: 100px;
+            margin: 20px;
+            animation: spin 3s infinite ease-in-out;
+        }
+
+        .btn {
+            background-color: #ffcc00; /* Warna kuning cerah */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ff9900; /* Warna kuning oranye saat hover */
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive untuk tampilan mobile */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 32px;
+            }
+            p {
+                font-size: 16px;
+            }
+            .photo {
+                width: 120px;
+                height: 120px;
+            }
+            .sticker {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Musik akan diputar otomatis -->
+    <audio id="background-music" autoplay loop>
+        <source src="Musik.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Halaman 1: Ucapan Pembuka -->
+    <div class="page active" id="page1">
+        <h1>Selamat Ulang Tahun, Fapi!</h1>
+        <img src="fapi.jpg" alt="Foto Pacar" class="photo">
+        <p>Fapi sayang, selamat ulang tahun ya !! Ini kado sederhana yang bisa aku berikan sama kamu.</p> 
+        <p>Jangan liat dari bentuknya yang standar ini ya. Semoga kamu seneng ya.</p>
+        <img src="3.gif" alt="Stiker Lucu" class="sticker">
+        <button class="btn" onclick="nextPage(2)">Lanjutkan</button>
+    </div>
+
+    <!-- Halaman 2: Ucapan Lanjutan -->
+    <div class="page" id="page2">
+        <h1>Doa dan Harapan untukmu</h1>
+        <p>Semoga kamu bahagia selalu, sehat terus, rejekinya lancar, jadi anak yang sayang sama keluarga, apa yang kamu inginkan tercapai. Pokoknya yang terbaik selalu mengiringi hidup kamu. Sebenernya masih ada doa dan harapan dari aku buat km tapi rasanya mustahil jadi aku cmn bisa serahkan ke Tuhan, apa yang terbaik untuk kita itulah yang terbaik dari Tuhan buat kita ya. I love you so much Fapi!!</p>
+        <img src="1.gif" alt="Stiker Lucu" class="sticker">
+        <button class="btn" onclick="nextPage(3)">Lanjutkan</button>
+    </div>
+
+    <!-- Halaman 3: Kejutan Terakhir -->
+    <div class="page" id="page3">
+        <h1>Selamat Ulang Tahun!</h1>
+        <p>Kejutan kecil ini sebagai ungkapan cintaku padamu. Semoga ulang tahunmu penuh kebahagiaan. Aku selalu di sampingmu. Aku cinta kamu! 💖</p>
+        <img src="2.gif" alt="Stiker Lucu" class="sticker">
+        <button class="btn" onclick="showSurprise()">Klik untuk kejutan!</button>
+    </div>
+
+    <!-- Javascript untuk transisi halaman -->
+    <script>
+        function nextPage(pageNumber) {
+            // Hapus kelas 'active' dari semua halaman
+            var pages = document.querySelectorAll('.page');
+            pages.forEach(function(page) {
+                page.classList.remove('active');
+            });
+
+            // Tambahkan kelas 'active' ke halaman yang baru
+            document.getElementById('page' + pageNumber).classList.add('active');
+        }
+
+        function showSurprise() {
+            alert('Selamat Ulang Tahun! 🎉 Semoga harimu dipenuhi kebahagiaan!');
+        }
+    </script>
+
+</body>
+</html>
