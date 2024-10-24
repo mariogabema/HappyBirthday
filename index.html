@@ -126,18 +126,33 @@
     </style>
 </head>
 <body>
-    <!-- Musik akan diputar otomatis -->
-    <audio id="background-music" autoplay loop>
+    <!-- Elemen audio -->
+    <audio id="background-audio" autoplay>
         <source src="Musik.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
+        Browser Anda tidak mendukung tag audio.
     </audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('background-audio');
+            audio.volume = 0.5; // Atur volume audio
+
+            // Jika autoplay diblokir, coba mulai audio setelah interaksi pengguna
+            audio.play().catch(function(error) {
+                console.log('Autoplay dicegah. Menunggu interaksi pengguna...');
+                document.body.addEventListener('click', function() {
+                    audio.play();
+                }, { once: true });
+            });
+        });
+    </script>
 
     <!-- Halaman 1: Ucapan Pembuka -->
     <div class="page active" id="page1">
         <h1>Selamat Ulang Tahun, Fapi!</h1>
         <img src="fapi.jpg" alt="Foto Pacar" class="photo">
-        <p>Fapi sayang, selamat ulang tahun ya !! Ini kado sederhana yang bisa aku berikan sama kamu.</p> 
-        <p>Jangan liat dari bentuknya yang standar ini ya. Semoga kamu seneng ya.</p>
+        <p> 🎉 SURPRISSEEEEEEEEEEEEEEE !!! 🎉 </p>
+        <p>Fapi sayang, selamat ulang tahun ya !! </p> 
         <img src="3.gif" alt="Stiker Lucu" class="sticker">
         <button class="btn" onclick="nextPage(2)">Lanjutkan</button>
     </div>
@@ -153,7 +168,8 @@
     <!-- Halaman 3: Kejutan Terakhir -->
     <div class="page" id="page3">
         <h1>Selamat Ulang Tahun!</h1>
-        <p>Kejutan kecil ini sebagai ungkapan cintaku padamu. Semoga ulang tahunmu penuh kebahagiaan. Aku selalu di sampingmu. Aku cinta kamu! 💖</p>
+        <p>Fapi maaf ya aku cmn bisa ngasih kado yang sederhana ini. Semoga kamu seneng sama kado aku ini ya</p>
+        <p>Plis jangan liat bentuknya yang standar ini ya. Aku sayang kamu selalu 💖</p>
         <img src="2.gif" alt="Stiker Lucu" class="sticker">
         <button class="btn" onclick="showSurprise()">Klik untuk kejutan!</button>
     </div>
@@ -172,7 +188,7 @@
         }
 
         function showSurprise() {
-            alert('Selamat Ulang Tahun! 🎉 Semoga harimu dipenuhi kebahagiaan!');
+            alert('Selamat Ulang Tahun! Bahagia Selalu ya Fapi! 🎉 ');
         }
     </script>
 
